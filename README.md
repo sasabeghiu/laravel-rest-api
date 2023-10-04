@@ -5,16 +5,22 @@
 `docker compose up -d db`
 `docker compose up --build laravelapp`
 
+## Access database
+
+`docker exec -it db mysql -u root -p`
+`GRANT ALL PRIVILEGES ON laravel_rest_api.* TO 'admin'@'%';`
+`FLUSH PRIVILEGES;`
+`CREATE DATABASE laravel_rest_api;`
+`EXIT;`
+
 ## Migrate database
 
 `docker exec laravelapp php artisan migrate`
 
-## Access database
-
-`docker exec -it db mysql -u root -p`
-
 ## Remove containers
+
 `docker compose down -v`
 
 ## Test the request from Insomnia or something else
+
 `http://localhost:8000/api/player/1`

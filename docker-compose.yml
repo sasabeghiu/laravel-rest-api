@@ -3,7 +3,7 @@ version: "3.9"
 services:
     laravelapp:
         container_name: laravelapp
-        image: sasacrow/laravelapp:1.0.8
+        image: sasacrow/laravelapp:1.0.9
         build: .
         ports:
             - "8000:8000"
@@ -24,6 +24,18 @@ services:
             MYSQL_DB: laravel_rest_api
         volumes:
             - mysqldata:/var/lib/mysql
+
+    phpmyadmin:
+        container_name: phpmyadmin
+        image: phpmyadmin/phpmyadmin
+        ports:
+            - "8081:80"
+        environment:
+            PMA_HOST: db # Use the name of your MySQL service (defined in this file) as the host
+            PMA_PORT: 3306
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin
 
 volumes:
     mysqldata: {}
